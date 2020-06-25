@@ -147,5 +147,5 @@ cython_debug/
 # Local History for Visual Studio Code
 .history/
 
-./gui.py
-./gui.ui
+gui.py
+gui.ui
