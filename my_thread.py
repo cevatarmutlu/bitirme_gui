@@ -16,14 +16,19 @@ dict1 = {}
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
-    def __init__(self, parent, df):
+    def __init__(self, parent, video_path,df):
         super().__init__(parent)
         self.df = df
+        self.video_path = video_path
 
     def run(self):
-        cap = cv2.VideoCapture("traffic_v1_720p.mp4")
+        cap = cv2.VideoCapture(self.video_path)
         while True:
             ret, frame = cap.read()
+
+            if ret==False:
+                cv2.destroyAllWindows()
+                break
             if ret:
                 # https://stackoverflow.com/a/55468544/6622587
                 rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -37,4 +42,5 @@ class Thread(QThread):
                 dict_add(dict1, 'ch', ch)
                 self.df = add_pandas(self.df, dict1)
                 # print(self.df)
+            
                 

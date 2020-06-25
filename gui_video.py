@@ -15,7 +15,5 @@ if __name__ == '__main__':
     gui = Ui_Dialog()
 
     gui.setupUi(df)
-    # model = pandas_model.PandasModel(df)
-    # gui.frame_value.setModel(model)
     gui.show()
     app.exec_() # For Signal and Slot actions catch
